@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+	<form action = 'getNearPosts.html' method = 'POST' enctype = "multipart/form-data">
+		Location: lnt:<input type = 'text' name = 'lnt' value = '11.2' />
+				  lat:<input type = 'text' name = 'lat' value = '222.2' />
+		Max_count:<input type = 'text' name = 'max_count' value = '20' />
+		LastPostsID:<input type = 'text' name = 'last_postid' value = '0' />
+		<input type = 'submit' value = 'get' />
+	</form>
+{% endblock %}
+
+

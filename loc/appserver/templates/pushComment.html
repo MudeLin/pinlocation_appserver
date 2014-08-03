@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+	<form action = 'pushComment.html' method = 'POST' >
+		postid      : <input type = 'text' value = '1' name = 'postid' />
+		<br />
+		Comment_text: <input type = 'text' value = 'great' name = 'comment_text' />
+		<input type = 'submit' value = 'comment' />
+	</form>
+{% endblock %}
+
+

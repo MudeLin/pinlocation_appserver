@@ -1,0 +1,107 @@
+
+host =172.18.159.120  待定
+
+通过http协议传输数据，服务器返回数据格式采用json格式，接收参数通过POST表单形式。
+
+1)登录:
+	host/login.html
+	参数：
+		1，username 
+		2, password
+
+	返回：
+		登录成功：{'code':200}
+		登录失败：{'code':120}
+
+2)注册：
+	host/registe.html
+	参数：
+		1，username
+		2, password
+		3, email
+	返回：
+		注册成功：{'code':200}
+		注册失败: {'code':120}
+3)登出：
+	host/logout.html
+	参数：
+		无
+	返回：
+		登出成功：{'code':200'}
+
+需要先登录
+4) 在某个位置下发布新的说说：
+	host/pushPost.html
+	参数：
+		1, lnt        经度  
+		2, lat        纬度
+		3, loc_descript 位置的描述（如中大图书馆，从百度地图API获得）
+		3, post_text  说说的文字内容
+		4, image 	  图片（可以为空）
+	放回：
+		发布成功:{'code':200}
+		发布失败（没有登录):{'code':999}
+
+需要先登录
+//现在还没用到
+5) 评论某个位置附近的说说：
+	host/pushComment.html
+	参数：
+		1, lnt
+		2, lat     纬度
+		3, comment_text 评论的文字内容
+		4，postid       说说id
+	返回：
+		评论成功: {'code':200}
+		评论失败（没有登录）:{'code':999}
+
+不需要先登录
+6) 查看某个位置的最新周围的说说：
+	host/getNearPosts.html
+	参数：
+		1，lnt
+		2, lat      纬度 
+		(lnt = -1,lat = -1) 则返回用户去过的地方的所有的位置的最新说说
+		3, max_count   一次返回的最多说说数目
+		4，last_postid 最近一个接收到说说的最大id,第一次请求请置为0
+	返回：
+		{'code':200,
+		 'post_length': 说说的数目
+		 'result':[
+			{'postid':id
+			 'post_time': 时间
+			 'image': 图片在本地的url，没有图片的其值为：no_image
+			 'user' : 发布说说的用户名
+			 'location':          发布说说的位置
+			 	{	
+					'lnt': 经度
+					'lat': 纬度
+					'loc_descript': '位置信息'
+				}
+			 'post_text':发布说说的文字内容
+			 'comment_length':评论的个数
+			 'comments':[{
+			 	'comment_text':评论的文字内容，
+				'comment_time':评论的时间,
+				'comment_user':评论的用户
+			 },...
+			 ]
+			},...
+		 ]
+		}
+
+7) 获取图片：
+	收到附近说说后得到url地址：如upload_image/abcd.png
+	通过host/图片url地址,请求图片
+
+不需要先登录
+
+8) 加载某个位置更多的周围的说说：
+	host/loadMorePosts.html
+	参数：
+		1，lnt
+		2, lat       纬度 
+		3, max_count 一个返回的最多说说数目
+		4, smallist_postid 最近接收到的说说的最小id,初始化为无穷大
+	返回：
+		格式同上

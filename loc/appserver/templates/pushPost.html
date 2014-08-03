@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+	<form action = 'pushPost.html' method = 'POST' enctype = "multipart/form-data">
+		Location: lnt:<input type = 'text' name = 'lnt' value = '' />
+				  lat:<input type = 'text' name = 'lat' value = '' />
+			loc_descript:<input type = "text" name = "loc_descript" value = "" />
+		Post_text: <input type = 'text' name = 'post_text' value = '' />
+		image    : <input type = 'file' name = 'image' />
+		<input type = 'submit' value = 'post' />
+	</form>
+{% endblock %}
+
+

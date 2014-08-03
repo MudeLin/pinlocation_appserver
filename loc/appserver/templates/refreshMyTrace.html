@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<form action = 'refreshMyTrace.html' method = 'POST' enctype = "multipart/form-data">
+		Max_count:<input type = 'text' name = 'max_count' value = '20' />
+		LastPostsID:<input type = 'text' name = 'last_postid' value = '0' />
+		<input type = 'submit' value = 'get' />
+	</form>
+{% endblock %}
+
+
